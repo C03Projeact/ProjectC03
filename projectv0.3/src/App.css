@@ -1,0 +1,1035 @@
+:root {
+  --sidebar-flex: 1.5;
+  --condiv-flex: 6;
+  --fontsize-p: 1.2rem;
+  --fontsize-nav: 1.6rem;
+  --typing-font: 3rem;
+}
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  box-sizing: border-box;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/* .App {
+  display:contents;
+  width: 100vw;
+  min-height: 100vh;
+} */
+/* Admin Navbar */
+.admin-sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: #fefeff;
+  height: 100vh;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  color: rgb(0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: all 0.3s ease;
+}
+
+.sidebar-header {
+  padding: 20px;
+  background-color: #0059ff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.sidebar-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.toggle-btn {
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+/* Nav items */
+.admin-options {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.admin-options li {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.admin-options a {
+  text-decoration: none; /* Remove underline */
+  color: #333; /* Set link color */
+  font-size: 1.2em; /* Adjust font size */
+  display: block;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.admin-options a:hover {
+  background-color: #ddd; /* Change background on hover */
+}
+
+.admin-item {
+  display: block;
+  padding: 15px 20px;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1rem;
+  border-bottom: 1px solid #ffffff;
+  transition: background-color 0.3s ease, padding-left 0.3s ease;
+}
+
+.admin-item:hover {
+  background-color: #ffffff;
+  padding-left: 30px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .admin-sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .admin-options {
+    display: none;
+  }
+
+  .admin-options.active {
+    display: block;
+  }
+}
+/* Admin Navbar */
+/* Main content container */
+.main-content {
+  margin-left: 250px; /* Push the content to the right by the width of the sidebar */
+  padding: 20px;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  transition: margin-left 0.3s ease; /* Smooth transition when adjusting the sidebar */
+}
+.main-content h2 {
+  font-size: 24px; /* ปรับขนาดตัวอักษรตามต้องการ */
+  font-weight: bold; /* ทำให้ตัวอักษรหนา */
+}
+.main-content th {
+  font-size: 15px; /* ปรับขนาดตัวอักษรตามต้องการ */
+  font-weight: bold; /* ทำให้ตัวอักษรหนา */
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .admin-sidebar {
+    width: 200px;
+  }
+
+  .main-content {
+    margin-left: 200px;
+  }
+}
+/* Main content container */
+/* logout */
+.logout-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  text-decoration: none; /* Remove underline */
+  color: #333; /* Set link color */
+  font-size: 1.2em; /* Adjust font size */
+  display: block;
+  padding: 10px;
+  border-radius: 4px;
+  text-align: left;
+}
+.logout-btn:hover {
+  background-color: #ddd;
+}
+.logout-home {
+  background: transparent; /* ทำให้พื้นหลังเป็นโปร่งใส */
+  border: none; /* ลบกรอบ */
+  color: black; /* สีตัวอักษร */
+  font-size: 15px; /* ขนาดตัวอักษร */
+  cursor: pointer; /* แสดงว่าเป็นปุ่ม */
+  text-decoration: none; /* ลบการขีดเส้นใต้ */
+  padding: 10px 20px; /* การเว้นระยะ */
+}
+
+.logout-home:hover {
+  color: #fff; /* เปลี่ยนสีตัวอักษรเมื่อ hover */
+}
+.admin-options-user {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.admin-options-user.active {
+  display: block;
+  transition: 0.5s;
+}
+
+.admin-options-user li {
+  margin-bottom: 10px;
+  text-align: right;
+}
+
+.admin-options-user a {
+  text-decoration: none; /* Remove underline */
+  color: #333; /* Set link color */
+  font-size: 1.2em; /* Adjust font size */
+  /* display: block; */
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.admin-options-user a:hover {
+  background-color: #ddd; /* Change background on hover */
+}
+.Login {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  height: 10vh;
+  min-height: 30vh;
+  border: 2px solid gray;
+  margin-top: 50px;
+  margin-right: 200px;
+  margin-left: 200px;
+}
+.Login h1 {
+  display: flex;
+  padding: 20px;
+  margin-left: 30px;
+}
+.Login label {
+  margin-left: 35px;
+}
+.Login button {
+  margin: 20px 5px 5px 100px;
+  font-size: 16px;
+}
+.barLogin {
+  font-size: 20px;
+  min-height: 12vh;
+  width: 100%;
+  background-color: gray;
+  padding-left: 30px;
+  padding-top: 10px;
+  /* position: fixed; */
+  z-index: -1;
+  padding-top: 40px;
+  padding-left: 70px;
+}
+.barLogin h1 {
+  font-size: 20px;
+}
+.barLogin h2 {
+  font-size: 15px;
+}
+
+.nameContainer {
+  position: fixed;
+  top: 0;
+  right: 5px;
+  margin-top: 10px;
+  margin-right: 30px;
+}
+
+.arrowContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 12px;
+  margin-right: 10px;
+}
+
+.logo {
+  position: fixed;
+  width: 45px;
+  z-index: 1;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.bar {
+  position: fixed;
+  width: 45px;
+  z-index: 1;
+  margin-top: 10px;
+  left: 0px;
+  top: 85px;
+  background-color: gray;
+}
+.Tabbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 998; /* ให้ Tabbar อยู่ด้านหน้าสุด */
+  /* เพิ่มคุณสมบัติอื่น ๆ ตามต้องการ */
+}
+
+.Tabbar nav {
+  padding: 0px 30px 0px 30px;
+  flex: var(--sidebar-flex);
+  background: grey;
+  position: fixed;
+  top: 90px;
+  height: 30px;
+  width: 100%;
+}
+
+.Tabbar nav ul {
+  font-size: var(--fontsize-nav);
+  text-align: right;
+  list-style: none;
+}
+.Tabbar nav ul span {
+  margin: 0px 0px 0px 20px;
+}
+
+.Tabbar nav ul span a {
+  color: black;
+  text-decoration: none;
+  font-size: 15px;
+}
+.Tabbar nav ul span a:hover {
+  color: #fff;
+}
+.logout-link {
+  color: black;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.logout-link:hover {
+  color: #fff;
+}
+.Navitems li {
+  list-style-type: none;
+}
+
+.Navitems li a {
+  text-decoration: none;
+  color: #fff;
+  padding: 10px;
+  display: block;
+}
+
+.Navitems li a:hover {
+  background-color: rgba(231, 43, 43, 0.616);
+  color: #000;
+}
+
+.chapter-container {
+  margin-bottom: 10px;
+}
+
+.selected {
+  background-color: #ddd;
+}
+
+.navbar {
+  position: fixed;
+  top: 120px;
+  display: flex;
+  flex-direction: column;
+  background-color: gray; /* ใช้สีพื้นหลังที่มืดขึ้น */
+  padding: 20px; /* เพิ่ม padding เพื่อความสบายตา */
+  max-width: 200px; /* เพิ่มความกว้าง */
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 999;
+}
+
+.chapter-container {
+  margin: 10px 0; /* เพิ่มระยะห่างระหว่างบทเรียน */
+}
+
+.navbar a {
+  display: block; /* ทำให้ลิงก์เต็มความกว้าง */
+  padding: 10px; /* เพิ่ม padding ให้ลิงก์ */
+  color: black; /* เปลี่ยนสีลิงก์ให้เข้ากับพื้นหลัง */
+  text-decoration: none; /* ไม่ให้มีขีดเส้นใต้ */
+  transition: background-color 0.3s ease, color 0.3s ease; /* เพิ่มเอฟเฟกต์การเปลี่ยนสี */
+}
+
+.navbar a:hover {
+  background-color: gray; /* สีพื้นหลังเมื่อ hover */
+  color: #ffffff; /* เปลี่ยนสีเมื่อ hover */
+}
+
+.navbar nav {
+  padding: 10px;
+  cursor: pointer;
+  font-size: var(--fontsize-nav);
+}
+
+.navbar nav ul {
+  list-style: none;
+  padding: 0; /* ลบ padding */
+}
+
+.navbar nav ul li {
+  margin: 5px 0;
+  border-radius: 5px; /* ขอบมน */
+}
+
+.navbar nav ul li a {
+  text-decoration: none;
+  color: #ffffff; /* เปลี่ยนสีลิงก์เป็นสีขาว */
+}
+
+.navbar nav ul li a:hover {
+  color: #ffc107; /* เปลี่ยนสีเมื่อ hover */
+}
+
+.down-arrow-icon {
+  height: 30px;
+  top: 8px;
+  right: 30px;
+  position: fixed;
+  z-index: 3;
+  cursor: pointer;
+}
+.dropdown-menu {
+  position: fixed;
+  z-index: 3;
+  top: 40px;
+  right: 30px;
+  border: 1px solid black;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 20px;
+}
+
+.Description {
+  position: fixed;
+  top: 30%;
+  width: 90%;
+}
+.Description h2 {
+  margin: 10px 0px 10px 40px;
+}
+
+.Description p {
+  margin: 10px 0px 0px 80px;
+}
+
+/* .Description p:first-child:first-line{
+  margin: 100px;
+}
+ */
+
+.Description ul {
+  list-style-type: disc; /* ใช้จุดดำ */
+  margin-left: 20px; /* กำหนดระยะห่างของจุดดำจากขอบ */
+}
+
+.Description li {
+  margin: 5px 0px 0px 80px;
+}
+
+.Profile {
+  width: 870px;
+  margin: 50px auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100px;
+}
+
+.Profile h1 {
+  color: #fff;
+  font-size: 30px;
+  padding: 20px;
+  margin: 40px 40px 0px 40px;
+  height: 70px;
+  background: rgb(77, 7, 7);
+  position: relative;
+}
+
+.Data {
+  color: rgb(77, 7, 7);
+  font-size: 25px;
+  padding: 20px;
+  margin: 0px 40px 0px 40px;
+  height: 400px;
+  background: rgb(230, 229, 229);
+  position: relative;
+}
+
+.Data-name {
+  position: absolute;
+  top: 50px;
+  left: 150px;
+}
+
+.Data-ID {
+  position: absolute;
+  top: 50px;
+  left: 450px;
+}
+
+.Data-faculty {
+  position: absolute;
+  top: 180px;
+  left: 150px;
+}
+
+.Data-department {
+  position: absolute;
+  top: 180px;
+  left: 450px;
+}
+
+.Data-Time {
+  position: absolute;
+  top: 300px;
+  left: 50px;
+}
+.Data-group {
+  position: absolute;
+  top: 300px;
+  left: 380px;
+}
+.Data-teacher {
+  position: absolute;
+  top: 300px;
+  left: 550px;
+}
+
+.subject {
+  position: absolute;
+  top: 140px;
+  left: 200px;
+  z-index: -2;
+}
+
+.content {
+  position: absolute;
+  top: 200px;
+  background-color: rgba(185, 185, 185, 0.747);
+  width: 75%;
+  height: auto;
+  padding: 25px;
+  left: 200px;
+  z-index: -2;
+}
+
+.example {
+  position: absolute;
+  top: 700px;
+  background-color: rgba(185, 185, 185, 0.747);
+  width: 75%;
+  height: 300px;
+  padding: 25px;
+  left: 200px;
+  z-index: -2;
+}
+
+/* AdminEditScore.css */
+
+.edit-score-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.edit-score-label {
+  font-weight: bold;
+}
+
+.edit-score-input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  margin-top: 5px;
+}
+
+.edit-score-button {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.edit-score-button:hover {
+  background-color: #2196f2;
+}
+
+/* Add these styles to your CSS file or style section */
+
+.admin-page {
+  max-width: 800px;
+  margin: auto;
+}
+
+.add-user-button,
+.upload-csv-button {
+  margin-bottom: 20px;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #2196f3;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.user-group {
+  margin-bottom: 30px;
+}
+
+h2 {
+  color: #333;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #c9c6c6;
+  color: black;
+}
+
+.user-row:hover {
+  background-color: #f5f5f5;
+}
+
+.edit-user-button,
+.delete-user-button {
+  margin-right: 5px;
+  padding: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.edit-user-button:hover,
+.delete-user-button:hover,
+.add-user-button:hover,
+.upload-csv-button:hover {
+  background-color: #555;
+  color: white;
+  cursor: pointer;
+}
+.edit-user-button {
+  background-color: #2196f3;
+  color: white;
+}
+
+.delete-user-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.admin-content-editor {
+  text-align: center;
+}
+
+.lessons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.lesson-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.login-message {
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+}
+
+.login-message.success {
+  color: green;
+  background-color: #eaffea;
+}
+
+.login-message.failure {
+  color: red;
+  background-color: #ffd4d4;
+}
+
+.addUser {
+  max-width: 100%;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+.addUser h1 {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.addUser label {
+  display: block;
+  margin-bottom: 5px;
+  flex-direction: column;
+  gap: 15px;
+}
+.addUser select {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.addUser input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.addUser button {
+  background-color: #2196f3;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100px;
+}
+
+.addUser button:hover {
+  background-color: #2196f2;
+}
+/* .addUser input{
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  width: 100%;
+} */
+.addUser h1 {
+  margin-bottom: 20px;
+}
+.TeacherAddUser {
+  max-width: 100%;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 100px;
+}
+.TeacherAddUser h1 {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.TeacherAddUser label {
+  display: block;
+  margin-bottom: 5px;
+  flex-direction: column;
+  gap: 15px;
+}
+.TeacherAddUser select {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.TeacherAddUser input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.TeacherAddUser button {
+  background-color: #2196f3;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100px;
+}
+
+.TeacherAddUser button:hover {
+  background-color: #2196f2;
+}
+/* .addUser input{
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  width: 100%;
+} */
+.TeacherAddUser h1 {
+  margin-bottom: 20px;
+}
+.main-content-user {
+  margin-left: 20px; /* Push the content to the right by the width of the sidebar */
+  padding: 20px;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  transition: margin-left 0.3s ease; /* Smooth transition when adjusting the sidebar */
+}
+.teacher-main-content {
+  margin-left: 20px; /* Push the content to the right by the width of the sidebar */
+  padding: 150px;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  transition: margin-left 0.3s ease; /* Smooth transition when adjusting the sidebar */
+}
+
+/* homework.css */
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f9f9f9; /* พื้นหลังของ container */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* เพิ่มเงาให้กับ container */
+}
+
+.homework-container {
+  margin-top: 150px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  justify-content: center;
+}
+
+.homework-item {
+  background-color: #ffffff; /* พื้นหลังของแต่ละรายการการบ้าน */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease; /* เพิ่ม transition เมื่อมีการเปลี่ยนแปลงสีพื้นหลัง */
+}
+
+.homework-item:hover {
+  background-color: #f0f0f0; /* เปลี่ยนสีพื้นหลังเมื่อเมาส์ชี้ไปยังรายการ */
+}
+
+.homework-item h2 {
+  margin-bottom: 10px;
+}
+
+.homework-link {
+  text-decoration: none;
+  color: #000000;
+  font-size: 18px;
+}
+
+.homework-link:hover {
+  text-decoration: none;
+  color: #001aff;
+}
+
+.displayModeButtons {
+  display: flex;
+  justify-content: flex-end; /* จัดปุ่มให้อยู่ด้านขวา */
+  padding: 20px; /* เพิ่มพื้นที่ว่างรอบ ๆ */
+}
+
+.addstudent-button {
+  background-color: transparent; /* ปรับปุ่มให้โปร่งแสง */
+  /* color: #007bff;  */
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px; /* ขนาดตัวอักษร */
+  /* font-weight: bold; */
+  /* border: none; */
+}
+
+.addstudent-button {
+  margin-left: 5px;
+  position: relative;
+}
+
+/* .addstudent-button + .addstudent-button:before {
+  content: "|"; 
+  position: absolute;
+  left: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+} */
+.addstudent-button:hover {
+  background-color: #ddd;
+  padding-left: 30px;
+}
