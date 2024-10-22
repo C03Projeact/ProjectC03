@@ -1033,3 +1033,11 @@ th {
   background-color: #ddd;
   padding-left: 30px;
 }
+
+.not-checked {
+  color: red;
+}
+
+.checked {
+  color: green;
+}

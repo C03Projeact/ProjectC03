@@ -141,14 +141,38 @@ function Setlab() {
     formData.append("lab_id", lab_id);
     formData.append("account_id", account_id);
     formData.append("score", score);
+    formData.append("submission_status", 1);
 
     axios
       .post(apiURL + "/update_score.php", formData)
       .then((response) => {
         console.log("Score updated:", response.data.message);
+        alert("อัปเดทคะแนนเรียบร้อยแล้ว"); // แจ้งเตือนเมื่ออัปเดทสำเร็จ
+        fetchLabData(labId); // เรียกเพื่ออัปเดตข้อมูลใหม่ในตาราง
       })
       .catch((error) => {
         console.error("Error updating score: ", error);
+      });
+  };
+  const updateAllScores = () => {
+    const formData = new FormData();
+    const scoresWithStatus = studentScore.map((student) => ({
+      ...student,
+      submission_status: 1, // เพิ่มสถานะการส่งที่นี่
+    }));
+    formData.append("scores", JSON.stringify(scoresWithStatus)); // ส่งข้อมูลเป็น JSON
+
+    axios
+      .post(apiURL + "/update_all_scores.php", formData)
+      .then((response) => {
+        console.log("Response from server:", response.data);
+        if (response.data.message) {
+          alert(response.data.message); // แสดงข้อความที่ได้รับ
+        }
+        fetchLabData(labId); // เรียกเพื่ออัปเดตข้อมูลใหม่ในตาราง
+      })
+      .catch((error) => {
+        console.error("Error updating scores: ", error);
       });
   };
 
@@ -186,13 +210,12 @@ function Setlab() {
     margin: "0 auto",
     maxWidth: "800px",
     fontFamily: "Arial, sans-serif",
-    backgroundColor: "#f5f5f5",
     borderRadius: "10px",
     marginTop: "150px", // เพิ่มส่วนนี้เพื่อเว้นจาก Tapbar
   };
 
   const tableStyle = {
-    width: "100%",
+    width: "100%", // ทำให้ตารางมีความกว้าง 100%
     borderCollapse: "collapse",
     marginTop: "20px",
   };
@@ -208,6 +231,10 @@ function Setlab() {
     padding: "10px",
     textAlign: "center",
     borderBottom: "1px solid #ddd",
+    minWidth: "100px", // กำหนดความกว้างขั้นต่ำ
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap", // ป้องกันไม่ให้ข้อความขึ้นบรรทัดใหม่
   };
 
   const inputStyle = {
@@ -281,6 +308,7 @@ function Setlab() {
               <th style={thStyle}>ชื่อ</th>
               <th style={thStyle}>นามสกุล</th>
               <th style={thStyle}>sec</th>
+              <th style={thStyle}>ส่งงาน</th>
               <th style={thStyle}>action</th>
             </tr>
           </thead>
@@ -292,6 +320,13 @@ function Setlab() {
                   <td style={tdStyle}>{item.first_name}</td>
                   <td style={tdStyle}>{item.last_name}</td>
                   <td style={tdStyle}>{item.section}</td>
+                  <td style={tdStyle}>
+                    {item.submission_id ? (
+                      <span className="checked">ส่งงานแล้ว</span>
+                    ) : (
+                      <span className="not-checked">ยังไม่ได้ส่งงาน</span>
+                    )}
+                  </td>
                   <td style={tdStyle}>
                     <button
                       style={buttonStyle}
@@ -308,6 +343,9 @@ function Setlab() {
 
       <div style={{ marginTop: "50px" }}>
         <h3>คะแนน</h3>
+        <button style={buttonStyle} onClick={updateAllScores}>
+          อัปเดททั้งหมด
+        </button>
         <table style={tableStyle}>
           <thead>
             <tr>
@@ -316,9 +354,8 @@ function Setlab() {
               <th style={thStyle}>นามสกุล</th>
               <th style={thStyle}>คะแนน</th>
               <th style={thStyle}>ชื่อ LAB</th>
-
               <th style={thStyle}>ไฟล์ชิ้นงาน</th>
-
+              <th style={thStyle}>ตรวจชิ้นงาน</th>
               <th style={thStyle}>action</th>
             </tr>
           </thead>
@@ -352,6 +389,17 @@ function Setlab() {
                       รายละเอียดเอกสาร
                     </a>
                   </td>
+                  <td
+                    style={tdStyle}
+                    className={
+                      item.submission_status === "0" ? "not-checked" : "checked"
+                    }
+                  >
+                    {item.submission_status === "0"
+                      ? "ยังไม่ได้ตรวจ"
+                      : "ตรวจแล้ว"}
+                  </td>
+
                   <td style={tdStyle}>
                     <button
                       style={buttonStyle}
@@ -360,7 +408,8 @@ function Setlab() {
                           item.id,
                           item.lab_id,
                           item.account_id,
-                          item.score
+                          item.score,
+                          item.submission_status
                         )
                       }
                     >

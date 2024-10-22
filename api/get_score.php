@@ -19,12 +19,13 @@ try {
 $account_id = isset($_GET['account_id']) ? intval($_GET['account_id']) : 0;
 
 $sql = "
-    SELECT ls.file, ls.score, l.lab_name 
+    SELECT ls.file, ls.score, l.lab_name, ls.submission_status 
     FROM lab_submit ls
     JOIN lab l ON ls.lab_id = l.lab_id
     WHERE ls.account_id = :account_id
     ORDER BY l.lab_id ASC
 ";
+
 
 
 $stmt = $conn->prepare($sql);

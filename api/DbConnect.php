@@ -7,8 +7,8 @@ class DbConnect
 {
     private $server = 'localhost';
     private $dbname = 'rmuttcp_C03';
-    private $user = 'rmuttcp';
-    private $pass = 'xG5qK2sg43';
+    private $user = 'root';
+    private $pass = '';
 
     public function connect()
 {

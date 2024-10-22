@@ -20,7 +20,7 @@ try {
     $lab_id = (int)$lab_id;
 
     // SQL query to fetch all labs
-    $sql = "SELECT account.user_id, account.first_name, account.last_name, lab_submit.lab_id, lab_submit.account_id, lab_submit.score, lab_submit.file, lab_submit.id, lab.lab_name 
+    $sql = "SELECT account.user_id, account.first_name, account.last_name, lab_submit.lab_id, lab_submit.account_id, lab_submit.score, lab_submit.file, lab_submit.id, lab.lab_name, lab_submit.submission_status
     FROM lab_submit 
     INNER JOIN account ON lab_submit.account_id = account.id
     INNER JOIN lab ON lab_submit.lab_id = lab.lab_id

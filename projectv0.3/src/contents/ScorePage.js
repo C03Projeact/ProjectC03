@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import apiURL from "../api/api"; 
+import apiURL from "../api/api";
 import Tapbar from "../components/Tapbar";
 import { useUser } from "../App"; // Import the useUser hook
 
@@ -88,6 +88,7 @@ const ScorePage = () => {
             <th style={thStyle}>ชื่อ LAB</th>
             <th style={thStyle}>ไฟล์ชิ้นงาน</th>
             <th style={thStyle}>คะแนน</th>
+            <th style={thStyle}>ตรวจชิ้นงาน</th>{" "}
           </tr>
         </thead>
         <tbody>
@@ -104,6 +105,14 @@ const ScorePage = () => {
                 </a>
               </td>
               <td style={tdStyle}>{score.score}</td>
+              <td
+                className={
+                  score.submission_status === 0 ? "not-checked" : "checked"
+                }
+                style={tdStyle}
+              >
+                {score.submission_status === 0 ? "ยังไม่ได้ตรวจ" : "ตรวจแล้ว"}
+              </td>
             </tr>
           ))}
         </tbody>
