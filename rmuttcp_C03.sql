@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Oct 19, 2024 at 06:18 AM
--- Server version: 10.6.19-MariaDB-log
--- PHP Version: 8.2.24
+-- Host: 127.0.0.1
+-- Generation Time: Oct 29, 2024 at 06:46 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `rmuttcp_C03`
+-- Database: `rmuttcp_c03`
 --
 
 -- --------------------------------------------------------
@@ -125,7 +125,7 @@ CREATE TABLE `lab` (
 INSERT INTO `lab` (`lab_id`, `lab_name`, `content_file`, `upload_time`, `open_time`, `close_time`, `status`) VALUES
 (7, 'Lab 3.1', '1729126324_lab3_1.docx', '2024-10-17 07:52:04', '2024-10-17 09:42:00', '2024-10-17 15:48:00', '0'),
 (8, 'Lab 3.2', '1729126335_lab3_2.docx', '2024-10-17 07:52:15', '2024-10-13 09:50:00', '2024-10-13 09:55:00', '1'),
-(9, 'Lab 3.3', '670292a7a99dc-lab3_3.pdf', '2024-10-06 20:37:43', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '1'),
+(9, 'Lab 3.3', '670292a7a99dc-lab3_3.pdf', '2024-10-06 20:37:43', '2024-10-22 12:14:00', '2024-10-22 13:14:00', '0'),
 (10, 'Lab 3.4', '670292bef0032-lab3_4.pdf', '2024-10-06 20:38:06', '2024-10-17 10:51:00', '2024-10-18 16:57:00', '0'),
 (11, 'Lab 3.5', '6702939e7027e-lab3_5.pdf', '2024-10-06 20:41:50', '2024-10-07 11:05:00', '2024-10-07 11:08:00', '0'),
 (12, 'Lab 3.6', '670293a67765d-lab3_6.pdf', '2024-10-06 20:41:58', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '1'),
@@ -168,7 +168,6 @@ CREATE TABLE `lab_allow` (
 INSERT INTO `lab_allow` (`id`, `lab_id`, `account_id`) VALUES
 (6, 1, 110),
 (8, 4, 110),
-(13, 9, 80),
 (27, 26, 92),
 (70, 11, 92),
 (77, 11, 92),
@@ -219,7 +218,6 @@ INSERT INTO `lab_allow` (`id`, `lab_id`, `account_id`) VALUES
 (164, 26, 188),
 (175, 7, 18),
 (176, 7, 51),
-(177, 7, 80),
 (178, 7, 103),
 (179, 7, 110),
 (180, 7, 178),
@@ -254,7 +252,17 @@ INSERT INTO `lab_allow` (`id`, `lab_id`, `account_id`) VALUES
 (239, 30, 188),
 (240, 30, 194),
 (241, 30, 197),
-(242, 30, 198);
+(242, 30, 198),
+(243, 9, 18),
+(244, 9, 51),
+(245, 9, 80),
+(246, 9, 103),
+(247, 9, 110),
+(248, 9, 178),
+(249, 9, 188),
+(250, 9, 194),
+(251, 9, 197),
+(252, 9, 198);
 
 -- --------------------------------------------------------
 
@@ -267,29 +275,31 @@ CREATE TABLE `lab_submit` (
   `lab_id` int(10) NOT NULL,
   `account_id` int(10) NOT NULL,
   `file` varchar(50) NOT NULL,
-  `score` int(10) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+  `score` int(10) NOT NULL DEFAULT 0,
+  `submission_status` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `lab_submit`
 --
 
-INSERT INTO `lab_submit` (`id`, `lab_id`, `account_id`, `file`, `score`) VALUES
-(0, 1, 80, '1727800380-code (3).pdf', 8),
-(0, 1, 110, '1727839864-code.pdf', 8),
-(0, 1, 110, '1728022885-code (3).c', 8),
-(0, 8, 80, '1728221962-code (4).pdf', 8),
-(0, 9, 80, '1728221967-code.py', 8),
-(0, 9, 80, '1728221990-code (1).pdf', 8),
-(0, 7, 110, '1728230630-code (5).pdf', 6),
-(0, 7, 80, '1728230673-code (6).pdf', 4),
-(0, 26, 110, '1728231889-code (7).pdf', 8),
-(0, 26, 110, '1728231907-code (8).pdf', 8),
-(0, 7, 80, '1729125895-code (4).c', 4),
-(0, 7, 178, '1729126686-code (5).c', 0),
-(0, 10, 80, '1729137542-code.pdf', 3),
-(0, 10, 110, '1729138036-code (6).c', 7),
-(0, 10, 178, '1729138214-code.c', 8);
+INSERT INTO `lab_submit` (`id`, `lab_id`, `account_id`, `file`, `score`, `submission_status`) VALUES
+(0, 1, 80, '1727800380-code (3).pdf', 8, 0),
+(0, 1, 110, '1727839864-code.pdf', 8, 0),
+(0, 1, 110, '1728022885-code (3).c', 8, 0),
+(0, 8, 80, '1728221962-code (4).pdf', 8, 0),
+(0, 9, 80, '1728221967-code.py', 7, 1),
+(0, 9, 80, '1728221990-code (1).pdf', 7, 1),
+(0, 7, 110, '1728230630-code (5).pdf', 6, 1),
+(0, 7, 80, '1728230673-code (6).pdf', 4, 1),
+(0, 26, 110, '1728231889-code (7).pdf', 8, 0),
+(0, 26, 110, '1728231907-code (8).pdf', 8, 0),
+(0, 7, 80, '1729125895-code (4).c', 4, 1),
+(0, 7, 178, '1729126686-code (5).c', 0, 1),
+(0, 10, 80, '1729137542-code.pdf', 3, 0),
+(0, 10, 110, '1729138036-code (6).c', 7, 0),
+(0, 10, 178, '1729138214-code.c', 8, 0),
+(0, 9, 110, '1729574065-code (7).pdf', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -377,7 +387,7 @@ ALTER TABLE `lab`
 -- AUTO_INCREMENT for table `lab_allow`
 --
 ALTER TABLE `lab_allow`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=243;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=253;
 
 --
 -- AUTO_INCREMENT for table `lesson`
